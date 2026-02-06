@@ -51,6 +51,12 @@ SUPPORT_GROUP = os.getenv(
     "https://t.me/ShrutiBotSupport"
 )
 
+# ✅ IMPORTANT FIX (BOT THIS VARIABLE USES)
+SUPPORT_CHAT = os.getenv(
+    "SUPPORT_CHAT",
+    SUPPORT_GROUP
+)
+
 INSTAGRAM = os.getenv(
     "INSTAGRAM",
     "https://instagram.com/yaduwanshi_nand"
