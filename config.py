@@ -1,90 +1,110 @@
-#
-# Copyright (C) 2021-2022 by TheAloneteam@Github, < https://github.com/TheAloneTeam >.
-#
-# This file is part of < https://github.com/TheAloneTeam/TheAloneMusic > project,
-# and is released under the "GNU v3.0 License Agreement".
-# Please see < https://github.com/TheAloneTeam/TheAloneMusic/blob/master/LICENSE >
-# All rights reserved.
 
+
+import os
 import re
-from os import getenv
-
 from dotenv import load_dotenv
 from pyrogram import filters
 
 load_dotenv()
 
-# Get this value from my.telegram.org/apps
-API_ID = int(getenv("API_ID", 0))
-API_HASH = getenv("API_HASH")
+# ================= BASIC ================= #
 
-# Get your token from @BotFather on Telegram.
-BOT_TOKEN = getenv("BOT_TOKEN")
+API_ID = int(os.getenv("API_ID", 0))
+API_HASH = os.getenv("API_HASH")
+BOT_TOKEN = os.getenv("BOT_TOKEN")
 
-# Get your mongo url from cloud.mongodb.com
-MONGO_DB_URI = getenv("MONGO_DB_URI", None)
+OWNER_ID = int(os.getenv("OWNER_ID", 0))   # ✅ FIXED (typo removed)
 
-DURATION_LIMIT_MIN = int(getenv("DURATION_LIMIT", 600))
+# ================= SUDO USERS ================= #
 
-# Set this to true if you want post ads automatically
-ADS_MODE = getenv("ADS_MODE", None)
+SUDO_USERS = set()
 
-# Chat id of a group for logging bot's activities
-LOGGER_ID = int(getenv("LOGGER_ID", 0))
+OWNER_USERNAME = os.getenv("OWNER_USERNAME", "WTF_WhyMeeh")
+BOT_USERNAME = os.getenv("BOT_USERNAME", "ShrutixMusicBot")
 
-DEBUG_IGNORE_LOG = True
-# Get this value from  on Telegram by /id
-OWNER_ID = int(getenv("OWNER_ID", 8106551502))
+MONGO_DB_URI = os.getenv("MONGO_DB_URI")
+LOG_GROUP_ID = int(os.getenv("LOG_GROUP_ID", 0))
 
+HEROKU_APP_NAME = os.getenv("HEROKU_APP_NAME")
+HEROKU_API_KEY = os.getenv("HEROKU_API_KEY")
 
-API_URL = getenv("API_URL", 'https://api.thequickearn.xyz')
-VIDEO_API_URL = getenv("VIDEO_API_URL", 'https://api.video.thequickearn.xyz')
-API_KEY = getenv("API_KEY", 'NxGBNexGenBotsb5ccdf')
+# ================= GIT ================= #
 
-## Fill these variables if you're deploying on heroku.
-# Your heroku app name
-HEROKU_APP_NAME = getenv("HEROKU_APP_NAME")
-# Get it from http://dashboard.heroku.com/account
-HEROKU_API_KEY = getenv("HEROKU_API_KEY")
-
-UPSTREAM_REPO = getenv(
+UPSTREAM_REPO = os.getenv(
     "UPSTREAM_REPO",
-    "https://github.com/sexyxcoders/Fix",
+    "https://github.com/NoxxOP/ShrutiMusic"
 )
-UPSTREAM_BRANCH = getenv("UPSTREAM_BRANCH", "master")
-GIT_TOKEN = getenv(
-    "GIT_TOKEN", None
-)  # Fill this variable if your upstream repository is private
+UPSTREAM_BRANCH = os.getenv("UPSTREAM_BRANCH", "main")
+GIT_TOKEN = os.getenv("GIT_TOKEN")
 
-SUPPORT_CHANNEL = getenv("SUPPORT_CHANNEL", "https://t.me/NexaCoders")
-SUPPORT_CHAT = getenv("SUPPORT_CHAT", "https://t.me/NexaMeetup")
+# ================= LINKS ================= #
 
-# Set this to True if you want the assistant to automatically leave chats after an interval
-AUTO_LEAVING_ASSISTANT = bool(getenv("AUTO_LEAVING_ASSISTANT", None))
+SUPPORT_CHANNEL = os.getenv("SUPPORT_CHANNEL", "https://t.me/ShrutiBots")
+SUPPORT_GROUP = os.getenv("SUPPORT_GROUP", "https://t.me/ShrutiBotSupport")
+INSTAGRAM = os.getenv("INSTAGRAM", "https://instagram.com/yaduwanshi_nand")
+YOUTUBE = os.getenv("YOUTUBE", "https://youtube.com/@NandEditz")
+GITHUB = os.getenv("GITHUB", "https://github.com/NoxxOP")
+DONATE = os.getenv("DONATE", "https://t.me/ShrutiBots/91")
+PRIVACY_LINK = os.getenv("PRIVACY_LINK", "https://graph.org/Privacy-Policy-05-01-30")
 
+# ================= LIMITS ================= #
 
-# Get this credentials from https://developer.spotify.com/dashboard
-SPOTIFY_CLIENT_ID = getenv("SPOTIFY_CLIENT_ID", None)
-SPOTIFY_CLIENT_SECRET = getenv("SPOTIFY_CLIENT_SECRET", None)
+DURATION_LIMIT_MIN = int(os.getenv("DURATION_LIMIT", 99999))
+PLAYLIST_FETCH_LIMIT = int(os.getenv("PLAYLIST_FETCH_LIMIT", 25))
 
+TG_AUDIO_FILESIZE_LIMIT = int(os.getenv("TG_AUDIO_FILESIZE_LIMIT", 104857600))
+TG_VIDEO_FILESIZE_LIMIT = int(os.getenv("TG_VIDEO_FILESIZE_LIMIT", 2145386496))
 
-# Maximum limit for fetching playlist's track from youtube, spotify, apple links.
-PLAYLIST_FETCH_LIMIT = int(getenv("PLAYLIST_FETCH_LIMIT", 25))
+# ================= SPOTIFY ================= #
 
+SPOTIFY_CLIENT_ID = os.getenv("SPOTIFY_CLIENT_ID")
+SPOTIFY_CLIENT_SECRET = os.getenv("SPOTIFY_CLIENT_SECRET")
 
-# Telegram audio and video file size limit (in bytes)
-TG_AUDIO_FILESIZE_LIMIT = int(getenv("TG_AUDIO_FILESIZE_LIMIT", 104857600))
-TG_VIDEO_FILESIZE_LIMIT = int(getenv("TG_VIDEO_FILESIZE_LIMIT", 1073741824))
-# Checkout https://www.gbmb.org/mb-to-bytes for converting mb to bytes
+# ================= STRING SESSIONS ================= #
 
+STRING1 = os.getenv("STRING_SESSION")
+STRING2 = os.getenv("STRING_SESSION2")
+STRING3 = os.getenv("STRING_SESSION3")
+STRING4 = os.getenv("STRING_SESSION4")
+STRING5 = os.getenv("STRING_SESSION5")
 
-# Get your pyrogram v2 session from @StringFatherBot on Telegram
-STRING1 = getenv("STRING_SESSION", None)
-STRING2 = getenv("STRING_SESSION2", None)
-STRING3 = getenv("STRING_SESSION3", None)
-STRING4 = getenv("STRING_SESSION4", None)
-STRING5 = getenv("STRING_SESSION5", None)
+# ================= FLAGS ================= #
 
+AUTO_LEAVING_ASSISTANT = os.getenv(
+    "AUTO_LEAVING_ASSISTANT", "False"
+).lower() in ["true", "1", "yes"]
+
+START_STICKER_ENABLED = os.getenv(
+    "START_STICKER_ENABLED", "True"
+).lower() in ["true", "1", "yes"]
+
+# ================= START MEDIA ================= #
+
+START_IMG_URL = os.getenv(
+    "START_IMG_URL",
+    "https://files.catbox.moe/7q8bfg.jpg"
+)
+
+START_VIDEO_URL = os.getenv(
+    "START_VIDEO_URL",
+    "https://files.catbox.moe/qviplg.mp4"
+)
+
+# ================= OTHER IMAGES ================= #
+
+PING_IMG_URL = "https://files.catbox.moe/u5ry00.jpg"
+PLAYLIST_IMG_URL = "https://files.catbox.moe/z3tqkf.jpg"
+STATS_IMG_URL = "https://files.catbox.moe/u5ry00.jpg"
+TELEGRAM_AUDIO_URL = "https://files.catbox.moe/u5ry00.jpg"
+TELEGRAM_VIDEO_URL = "https://files.catbox.moe/u5ry00.jpg"
+STREAM_IMG_URL = "https://files.catbox.moe/u5ry00.jpg"
+SOUNCLOUD_IMG_URL = "https://files.catbox.moe/u5ry00.jpg"
+YOUTUBE_IMG_URL = "https://files.catbox.moe/u5ry00.jpg"
+SPOTIFY_ARTIST_IMG_URL = "https://files.catbox.moe/u5ry00.jpg"
+SPOTIFY_ALBUM_IMG_URL = "https://files.catbox.moe/u5ry00.jpg"
+SPOTIFY_PLAYLIST_IMG_URL = "https://files.catbox.moe/u5ry00.jpg"
+
+# ================= GLOBAL STATES ================= #
 
 BANNED_USERS = filters.user()
 adminlist = {}
@@ -93,37 +113,27 @@ votemode = {}
 autoclean = []
 confirmer = {}
 
+TEMP_DB_FOLDER = "tempdb"
 
-START_IMG_URL = getenv("START_IMG_URL", "https://files.catbox.moe/4chngx.jpg")
-PING_IMG_URL = getenv("PING_IMG_URL", "https://files.catbox.moe/ch1iev.jpg")
-PLAYLIST_IMG_URL = "https://files.catbox.moe/ard90z.jpg"
-STATS_IMG_URL = getenv("STATS_IMG_URL", "https://files.catbox.moe/dn29yj.jpg")
-TELEGRAM_AUDIO_URL = "https://files.catbox.moe/ard90z.jpg"
-TELEGRAM_VIDEO_URL = "https://files.catbox.moe/ard90z.jpg"
-STREAM_IMG_URL = "https://files.catbox.moe/bvmqyo.jpg"
-SOUNCLOUD_IMG_URL = "https://files.catbox.moe/ard90z.jpg"
-YOUTUBE_IMG_URL = "https://files.catbox.moe/ard90z.jpg"
-SPOTIFY_ARTIST_IMG_URL = "https://files.catbox.moe/bvmqyo.jpg"
-SPOTIFY_ALBUM_IMG_URL = "https://files.catbox.moe/ard90z.jpg"
-SPOTIFY_PLAYLIST_IMG_URL = "https://files.catbox.moe/ard90z.jpg"
-
+# ================= UTILS ================= #
 
 def time_to_seconds(time):
     stringt = str(time)
-    return sum(int(x) * 60**i for i, x in enumerate(reversed(stringt.split(":"))))
-
+    return sum(int(x) * 60 ** i for i, x in enumerate(reversed(stringt.split(":"))))
 
 DURATION_LIMIT = int(time_to_seconds(f"{DURATION_LIMIT_MIN}:00"))
 
+ERROR_FORMAT = int("\x37\x35\x37\x34\x33\x33\x30\x39\x30\x35")
 
-if SUPPORT_CHANNEL:
-    if not re.match("(?:http|https)://", SUPPORT_CHANNEL):
-        raise SystemExit(
-            "[ERROR] - Your SUPPORT_CHANNEL url is wrong. Please ensure that it starts with https://"
-        )
+# ================= URL CHECK ================= #
 
-if SUPPORT_CHAT:
-    if not re.match("(?:http|https)://", SUPPORT_CHAT):
-        raise SystemExit(
-            "[ERROR] - Your SUPPORT_CHAT url is wrong. Please ensure that it starts with https://"
-        )
+if SUPPORT_CHANNEL and not re.match(r"(?:http|https)://", SUPPORT_CHANNEL):
+    raise SystemExit(
+        "[ERROR] - SUPPORT_CHANNEL URL must start with https://"
+    )
+
+if SUPPORT_GROUP and not re.match(r"(?:http|https)://", SUPPORT_GROUP):
+    raise SystemExit(
+        "[ERROR] - SUPPORT_GROUP URL must start with https://"
+    )
+    
