@@ -50,7 +50,7 @@ HEROKU_API_KEY = getenv("HEROKU_API_KEY")
 
 UPSTREAM_REPO = getenv(
     "UPSTREAM_REPO",
-    "https://github.com/nonsecular/Fix"
+    "https://github.com/nonsecularman/moomy"
 )
 UPSTREAM_BRANCH = getenv("UPSTREAM_BRANCH", "master")
 GIT_TOKEN = getenv("GIT_TOKEN", None)
@@ -131,14 +131,17 @@ STATS_IMG_URL = getenv(
     "https://files.catbox.moe/ztfuxp.jpg"
 )
 
-TELEGRAM_AUDIO_URL = "https://files.catbox.moe/419n5s.jpg"
-TELEGRAM_VIDEO_URL = "https://files.catbox.moe/419n5s.jpg"
-STREAM_IMG_URL = "https://files.catbox.moe/419n5s.jpg"
-SOUNCLOUD_IMG_URL = "https://files.catbox.moe/419n5s.jpg"
-YOUTUBE_IMG_URL = "https://files.catbox.moe/419n5s.jpg"
-SPOTIFY_ARTIST_IMG_URL = "https://files.catbox.moe/419n5s.jpg"
-SPOTIFY_ALBUM_IMG_URL = "https://files.catbox.moe/419n5s.jpg"
-SPOTIFY_PLAYLIST_IMG_URL = "https://files.catbox.moe/419n5s.jpg"
+PING_IMG_URL = "https://files.catbox.moe/u5ry00.jpg"
+PLAYLIST_IMG_URL = "https://files.catbox.moe/z3tqkf.jpg"
+STATS_IMG_URL = "https://files.catbox.moe/u5ry00.jpg"
+TELEGRAM_AUDIO_URL = "https://files.catbox.moe/u5ry00.jpg"
+TELEGRAM_VIDEO_URL = "https://files.catbox.moe/u5ry00.jpg"
+STREAM_IMG_URL = "https://files.catbox.moe/u5ry00.jpg"
+SOUNCLOUD_IMG_URL = "https://files.catbox.moe/u5ry00.jpg"
+YOUTUBE_IMG_URL = "https://files.catbox.moe/u5ry00.jpg"
+SPOTIFY_ARTIST_IMG_URL = "https://files.catbox.moe/u5ry00.jpg"
+SPOTIFY_ALBUM_IMG_URL = "https://files.catbox.moe/u5ry00.jpg"
+SPOTIFY_PLAYLIST_IMG_URL = "https://files.catbox.moe/u5ry00.jpg"
 
 # ================= UTILS ================= #
 
